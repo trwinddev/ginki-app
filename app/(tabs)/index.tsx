@@ -1,98 +1,147 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { SummaryCard } from "@/components/home/SummaryCard";
+import { ThemedText } from "@/components/themed-text";
+import { IconSymbol } from "@/components/ui/icon-symbol";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Chào buổi sáng,";
+    if (hour < 18) return "Một buổi chiều tốt lành,";
+    return "Buổi tối vui vẻ,";
+};
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    const colorScheme = useColorScheme();
+    const greeting = getGreeting();
+    const backgroundGradient =
+        colorScheme === "light"
+            ? ["#f7faff", "#e6ecff"]
+            : ["#151718", "#252A34"];
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+    return (
+        <LinearGradient colors={backgroundGradient} style={styles.container}>
+            <StatusBar style={colorScheme === "light" ? "dark" : "light"} />
+            <ScrollView contentContainerStyle={styles.scrollContainer}>
+                <SafeAreaView>
+                    {/* Header */}
+                    <View style={styles.header}>
+                        <View style={styles.headerTextContainer}>
+                            <ThemedText style={styles.greeting}>
+                                {greeting}
+                            </ThemedText>
+                            <ThemedText
+                                style={styles.userName}
+                                numberOfLines={1}
+                                ellipsizeMode="tail"
+                                adjustsFontSizeToFit
+                            >
+                                Phong
+                            </ThemedText>
+                        </View>
+                        <Link href="/settings" asChild>
+                            <View style={styles.settingsButton}>
+                                <IconSymbol
+                                    name="gearshape.fill"
+                                    size={24}
+                                    color={
+                                        colorScheme === "light"
+                                            ? "#333"
+                                            : "#EEE"
+                                    }
+                                />
+                            </View>
+                        </Link>
+                    </View>
+
+                    {/* Main Content */}
+                    <View style={styles.content}>
+                        <SummaryCard
+                            title="Nhắc Giờ"
+                            content="Tiếp theo: 06:30 - Đi làm"
+                            href="/(tabs)/time-alerts"
+                            icon={
+                                <IconSymbol
+                                    name="alarm.fill"
+                                    size={32}
+                                    color="white"
+                                />
+                            }
+                            gradient={["#4A90E2", "#007AFF"]}
+                        />
+                        <SummaryCard
+                            title="Nhắc Mang Đồ"
+                            content="Đang bật: 3 món"
+                            href="/(tabs)/item-checklist"
+                            icon={
+                                <IconSymbol
+                                    name="backpack.fill"
+                                    size={32}
+                                    color="white"
+                                />
+                            }
+                            gradient={["#F5A623", "#FFC107"]}
+                        />
+                        <SummaryCard
+                            title="Nhắc Theo Vị Trí"
+                            content="Sắp đến: Công ty"
+                            href="/(tabs)/location-alerts"
+                            icon={
+                                <IconSymbol
+                                    name="location.north.fill"
+                                    size={32}
+                                    color="white"
+                                />
+                            }
+                            gradient={["#50E3C2", "#48C6B9"]}
+                        />
+                    </View>
+                </SafeAreaView>
+            </ScrollView>
+        </LinearGradient>
+    );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+    container: {
+        flex: 1,
+    },
+    scrollContainer: {
+        paddingBottom: 120, // Make space for content and FAB
+    },
+    header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingHorizontal: 24,
+        paddingTop: 30,
+        paddingBottom: 20,
+    },
+    headerTextContainer: {
+        flex: 1,
+        marginRight: 16,
+        flexShrink: 1,
+    },
+    greeting: {
+        fontSize: 18,
+        opacity: 0.7,
+    },
+    userName: {
+        fontSize: 32,
+        fontWeight: "bold",
+        lineHeight: 36,
+    },
+    settingsButton: {
+        padding: 10,
+        borderRadius: 20,
+        backgroundColor: "rgba(128, 128, 128, 0.1)",
+    },
+    content: {
+        paddingHorizontal: 24,
+    },
 });
