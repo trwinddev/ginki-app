@@ -8,19 +8,19 @@ import { IconSymbol } from "../ui/icon-symbol";
 const options = [
     {
         icon: "clock.fill",
-        label: "Nhắc Giờ",
+        label: "Nhắc giờ",
         colors: ["#00BFFF", "#1E90FF"],
         screen: "/time-alerts",
     },
     {
         icon: "backpack.fill",
-        label: "Nhắc Mang Đồ",
+        label: "Nhắc mang đồ",
         colors: ["#FF5733", "#FF8C00"],
         screen: "/item-checklist",
     },
     {
         icon: "location.north.fill",
-        label: "Nhắc Vị Trí",
+        label: "Nhắc theo vị trí",
         colors: ["#6D5FFD", "#A855F7"],
         screen: "/location-alerts",
     },

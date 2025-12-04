@@ -26,6 +26,9 @@ const MAPPING: Record<string, keyof typeof MaterialIcons.glyphMap> = {
     calendar: "event",
     "gearshape.fill": "settings",
     "paperplane.fill": "send",
+    "arrow.left": "arrow-back",
+    "arrow.right": "arrow-forward",
+    "chevron.left": "chevron-left",
     "chevron.right": "chevron-right",
     "iphone.gen1": "smartphone",
     pc: "computer",
@@ -41,6 +44,8 @@ const MAPPING: Record<string, keyof typeof MaterialIcons.glyphMap> = {
     "list.bullet.rectangle.fill": "format-list-bulleted",
     "list.bullet.rectangle": "format-list-bulleted",
     "alarm.fill": "alarm",
+    close: "close",
+    trash: "delete",
 };
 
 /**

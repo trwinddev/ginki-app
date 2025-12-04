@@ -62,7 +62,7 @@ export default function HomeScreen() {
                     {/* Main Content */}
                     <View style={styles.content}>
                         <SummaryCard
-                            title="Nhắc Giờ"
+                            title="Nhắc giờ"
                             content="Tiếp theo: 06:30 - Đi làm"
                             href="/(tabs)/time-alerts"
                             icon={
@@ -75,7 +75,7 @@ export default function HomeScreen() {
                             gradient={["#4A90E2", "#007AFF"]}
                         />
                         <SummaryCard
-                            title="Nhắc Mang Đồ"
+                            title="Nhắc mang đồ"
                             content="Đang bật: 3 món"
                             href="/(tabs)/item-checklist"
                             icon={
@@ -88,7 +88,7 @@ export default function HomeScreen() {
                             gradient={["#F5A623", "#FFC107"]}
                         />
                         <SummaryCard
-                            title="Nhắc Theo Vị Trí"
+                            title="Nhắc theo vị trí"
                             content="Sắp đến: Công ty"
                             href="/(tabs)/location-alerts"
                             icon={
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     scrollContainer: {
-        paddingBottom: 120, // Make space for content and FAB
+        paddingBottom: 120,
     },
     header: {
         flexDirection: "row",

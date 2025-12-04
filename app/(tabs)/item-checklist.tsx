@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 export default function ItemChecklistScreen() {
     return (
         <ThemedView style={styles.container}>
-            <ThemedText type="title">Nhắc Mang Đồ</ThemedText>
+            <ThemedText type="title">Nhắc mang đồ</ThemedText>
         </ThemedView>
     );
 }

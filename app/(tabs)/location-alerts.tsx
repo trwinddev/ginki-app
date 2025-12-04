@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 export default function LocationAlertsScreen() {
     return (
         <ThemedView style={styles.container}>
-            <ThemedText type="title">Nhắc Theo Vị Trí</ThemedText>
+            <ThemedText type="title">Nhắc theo vị trí</ThemedText>
         </ThemedView>
     );
 }

@@ -11,7 +11,7 @@ export default function TabLayout() {
     const pathname = usePathname();
     const isHomePage = pathname === "/";
     const isDark = colorScheme === "dark";
-    const activeColor = isDark ? "#A78BFA" : "#4F46E5";
+    const activeColor = isDark ? "#FFF" : "#000";
     const inactiveColor = isDark ? "#999" : "#666";
 
     return (
@@ -53,7 +53,7 @@ export default function TabLayout() {
                 <Tabs.Screen
                     name="time-alerts"
                     options={{
-                        title: "Nhắc Giờ",
+                        title: "Nhắc giờ",
                         tabBarIcon: ({ color, focused }) => (
                             <IconSymbol
                                 name={focused ? "clock.fill" : "clock"}
@@ -66,7 +66,7 @@ export default function TabLayout() {
                 <Tabs.Screen
                     name="item-checklist"
                     options={{
-                        title: "Mang Đồ",
+                        title: "Mang đồ",
                         tabBarIcon: ({ color, focused }) => (
                             <IconSymbol
                                 name={focused ? "backpack.fill" : "backpack"}
@@ -79,7 +79,7 @@ export default function TabLayout() {
                 <Tabs.Screen
                     name="location-alerts"
                     options={{
-                        title: "Vị Trí",
+                        title: "Vị trí",
                         tabBarIcon: ({ color, focused }) => (
                             <IconSymbol
                                 name={
